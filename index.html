@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>DZYN | متجر الأحذية الفاخرة</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-crown"></i>
+            <span>DZYN</span>
+        </div>
+        <div class="cart-icon" id="cartIcon">
+            <i class="fas fa-shopping-bag"></i>
+            <span id="cartCount">0</span>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>DZYN <span>COLLECTION</span></h1>
+            <p>أناقة عصرية .. خطوة نحو التميز</p>
+        </div>
+    </div>
+
+    <div class="products-section">
+        <h2>أحدث التشكيلات <span>الذهبية</span></h2>
+        <div class="products-grid" id="productsGrid"></div>
+    </div>
+
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>إتمام الطلب</h3>
+            <form id="orderForm">
+                <input type="hidden" id="productName">
+                
+                <input type="text" id="fullName" placeholder="الاسم الكامل" required>
+                
+                <div class="phone-input">
+                    <span class="phone-prefix">+213</span>
+                    <input type="tel" id="phone" placeholder="مثال: 551234567" required>
+                </div>
+                
+                <select id="wilaya" required>
+                    <option value="">اختر الولاية</option>
+                </select>
+                
+                <select id="size" required>
+                    <option value="">اختر المقاس</option>
+                </select>
+                
+                <input type="number" id="quantity" min="1" value="1" required>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-check-circle"></i> تأكيد الطلب
+                </button>
+            </form>
+            <div id="formMessage"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 DZYN | جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
