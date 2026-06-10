@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultant | Site Professionnel</title>
+    <meta name="description" content="Consultant professionnel - Services de conseil en stratégie, finance, marketing et développement d'entreprise.">
+    <title>Consultant | Site Multipage</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -28,10 +29,12 @@
             --gray-600: #4b5563;
             --gray-700: #374151;
             --gray-800: #1f2937;
+            --gray-900: #111827;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
             --shadow-lg: 0 20px 40px -8px rgba(0, 0, 0, 0.1);
             --radius: 12px;
             --radius-lg: 16px;
+            --transition: 0.3s ease;
             --font: 'Cairo', system-ui, sans-serif;
             --header-height: 80px;
         }
@@ -40,7 +43,7 @@
             font-family: var(--font);
             color: var(--gray-800);
             background-color: var(--white);
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         /* Header */
@@ -52,15 +55,8 @@
             z-index: 1000;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(16px);
-            border-bottom: 1px solid transparent;
-            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--gray-200);
             height: var(--header-height);
-        }
-
-        .header.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            border-bottom-color: var(--gray-200);
-            box-shadow: var(--shadow);
         }
 
         .header-inner {
@@ -140,98 +136,39 @@
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
         }
 
-        /* Mobile navigation - en bas comme dans l'original */
-        .mobile-nav-wrapper {
+        .mobile-toggle {
             display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary);
         }
 
-        @media (max-width: 768px) {
-            .header {
-                height: 65px;
-            }
-            
-            .logo {
-                font-size: 1.2rem;
-            }
-            
-            .logo-icon {
-                width: 36px;
-                height: 36px;
-            }
-            
-            /* Menu en bas comme dans l'original */
-            .mobile-nav-wrapper {
-                display: block;
+        @media (max-width: 900px) {
+            .nav-links {
                 position: fixed;
-                bottom: 0;
-                left: 0;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                padding: 100px 24px;
+                gap: 16px;
+                box-shadow: var(--shadow-lg);
+                transition: right 0.3s ease;
+                z-index: 5;
+            }
+            .nav-links.active {
                 right: 0;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(20px);
-                border-top: 1px solid var(--gray-200);
-                z-index: 1000;
-                padding: 8px 12px;
-                overflow-x: auto;
-                white-space: nowrap;
-                scrollbar-width: none;
             }
-            
-            .mobile-nav-wrapper::-webkit-scrollbar {
-                display: none;
-            }
-            
-            .mobile-nav-links {
-                display: flex;
-                list-style: none;
-                gap: 6px;
-                justify-content: center;
-            }
-            
-            .mobile-nav-links a {
-                text-decoration: none;
-                color: var(--gray-700);
-                font-weight: 500;
-                font-size: 0.8rem;
-                padding: 8px 14px;
-                border-radius: 50px;
-                transition: all 0.2s ease;
-                white-space: nowrap;
-                display: inline-block;
-            }
-            
-            .mobile-nav-links a:hover,
-            .mobile-nav-links a.active {
-                color: var(--primary);
-                background: var(--gray-100);
-            }
-            
-            .desktop-nav {
-                display: none;
-            }
-            
-            .page-container {
-                padding-bottom: 70px;
-            }
-            
-            .whatsapp-float {
-                bottom: 75px;
-            }
-            
-            html[dir="rtl"] .whatsapp-float {
-                bottom: 75px;
+            .mobile-toggle {
+                display: block;
             }
         }
 
-        @media (min-width: 769px) {
-            .mobile-nav-wrapper {
-                display: none;
-            }
-            
-            .desktop-nav {
-                display: flex;
-            }
-        }
-
+        /* Main Content - Page Container */
         .page-container {
             padding-top: var(--header-height);
             min-height: 100vh;
@@ -251,17 +188,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Sections */
+        /* Section Styles */
         .section {
-            padding: 100px 24px;
+            padding: 80px 24px;
             max-width: 1200px;
             margin: 0 auto;
-        }
-
-        @media (max-width: 768px) {
-            .section {
-                padding: 60px 20px;
-            }
         }
 
         .section-label {
@@ -281,10 +212,15 @@
             margin-bottom: 16px;
         }
 
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 1.8rem;
-            }
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin-bottom: 48px;
+        }
+
+        .text-center {
+            text-align: center;
         }
 
         /* Hero */
@@ -320,30 +256,17 @@
             margin-bottom: 8px;
         }
 
-        @media (max-width: 768px) {
-            .hero-name {
-                font-size: 2rem;
-            }
-        }
-
         .hero-title {
             font-size: 1.25rem;
             color: var(--accent-dark);
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .hero-desc {
             color: var(--gray-500);
             margin-bottom: 32px;
             max-width: 480px;
-        }
-
-        @media (max-width: 900px) {
-            .hero-desc {
-                margin-left: auto;
-                margin-right: auto;
-            }
         }
 
         .btn {
@@ -359,14 +282,12 @@
         }
 
         .btn-primary {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+            background: var(--primary);
+            color: var(--white);
         }
 
         .btn-primary:hover {
-            background: var(--primary);
-            color: var(--white);
+            background: var(--primary-light);
             transform: translateY(-2px);
         }
 
@@ -388,12 +309,6 @@
             flex-wrap: wrap;
         }
 
-        @media (max-width: 900px) {
-            .hero-btns {
-                justify-content: center;
-            }
-        }
-
         .hero-image {
             width: 320px;
             height: 320px;
@@ -409,11 +324,8 @@
         }
 
         @media (max-width: 768px) {
-            .hero-image {
-                width: 200px;
-                height: 200px;
-                font-size: 4rem;
-            }
+            .hero-image { width: 220px; height: 220px; font-size: 4rem; }
+            .section-title { font-size: 1.9rem; }
         }
 
         /* Grids */
@@ -456,6 +368,11 @@
             margin-bottom: 8px;
         }
 
+        .service-card p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
         .why-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -482,31 +399,7 @@
             margin-bottom: 6px;
         }
 
-        .bio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .bio-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .bio-card {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 32px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--gray-100);
-        }
-
-        .bio-card h3 {
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-
+        /* Contact */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -514,9 +407,7 @@
         }
 
         @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
+            .contact-grid { grid-template-columns: 1fr; }
         }
 
         .contact-info-item {
@@ -548,6 +439,12 @@
             margin-bottom: 4px;
         }
 
+        .contact-info-item span {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        /* Pour que le + reste à gauche même en RTL */
         .phone-number {
             direction: ltr !important;
             display: inline-block;
@@ -568,6 +465,7 @@
             margin-bottom: 20px;
         }
 
+        /* Social */
         .social-grid {
             display: flex;
             flex-wrap: wrap;
@@ -595,10 +493,35 @@
         .social-link.facebook { background: #1877f2; }
         .social-link.instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #f77737); }
 
+        /* Bio cards */
+        .bio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .bio-grid { grid-template-columns: 1fr; }
+        }
+
+        .bio-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-100);
+        }
+
+        .bio-card h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        /* Footer */
         .footer {
             background: var(--primary);
             color: var(--gray-300);
-            padding: 60px 24px 30px;
+            padding: 50px 24px 30px;
         }
 
         .footer-inner {
@@ -643,6 +566,7 @@
             font-size: 0.85rem;
         }
 
+        /* WhatsApp Float */
         .whatsapp-float {
             position: fixed;
             bottom: 28px;
@@ -671,9 +595,8 @@
             left: 28px;
         }
 
-        .text-center {
-            text-align: center;
-        }
+        .page { display: none; }
+        .page.active-page { display: block; }
     </style>
 </head>
 <body>
@@ -683,42 +606,33 @@
                 <span class="logo-icon">C</span>
                 <span data-i18n="logo">Consultant</span>
             </a>
-            <!-- Desktop navigation -->
-            <ul class="nav-links desktop-nav">
-                <li><a href="#" data-page="home" data-i18n="nav.home">Accueil</a></li>
-                <li><a href="#" data-page="biography" data-i18n="nav.biography">Biographie</a></li>
-                <li><a href="#" data-page="services" data-i18n="nav.services">Services</a></li>
-                <li><a href="#" data-page="why" data-i18n="nav.why">Pourquoi moi</a></li>
-                <li><a href="#" data-page="social" data-i18n="nav.social">Réseaux</a></li>
-                <li><a href="#" data-page="contact" data-i18n="nav.contact">Contact</a></li>
-            </ul>
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#" data-page="home" data-i18n="nav.home">Accueil</a></li>
+                    <li><a href="#" data-page="biography" data-i18n="nav.biography">Biographie</a></li>
+                    <li><a href="#" data-page="services" data-i18n="nav.services">Services</a></li>
+                    <li><a href="#" data-page="why" data-i18n="nav.why">Pourquoi moi</a></li>
+                    <li><a href="#" data-page="social" data-i18n="nav.social">Réseaux</a></li>
+                    <li><a href="#" data-page="contact" data-i18n="nav.contact">Contact</a></li>
+                </ul>
+            </nav>
             <div class="lang-switcher">
                 <button class="lang-btn active" data-lang="fr">FR</button>
                 <button class="lang-btn" data-lang="ar">العربية</button>
             </div>
+            <button class="mobile-toggle" id="mobileToggle"><i class="fa-solid fa-bars"></i></button>
         </div>
     </header>
 
-    <!-- Mobile navigation (bottom) -->
-    <div class="mobile-nav-wrapper">
-        <ul class="mobile-nav-links">
-            <li><a href="#" data-page="home" data-i18n="nav.home">Accueil</a></li>
-            <li><a href="#" data-page="biography" data-i18n="nav.biography">Biographie</a></li>
-            <li><a href="#" data-page="services" data-i18n="nav.services">Services</a></li>
-            <li><a href="#" data-page="why" data-i18n="nav.why">Pourquoi moi</a></li>
-            <li><a href="#" data-page="social" data-i18n="nav.social">Réseaux</a></li>
-            <li><a href="#" data-page="contact" data-i18n="nav.contact">Contact</a></li>
-        </ul>
-    </div>
-
-    <div class="page-container">
+    <div class="page-container" id="pageContainer">
+        <!-- PAGE 1: ACCUEIL -->
         <div id="home-page" class="page active-page">
             <section class="hero">
                 <div class="hero-inner">
                     <div class="hero-content">
                         <h1 class="hero-name" data-i18n="hero.name">Nom du Consultant</h1>
                         <p class="hero-title" data-i18n="hero.title">Consultant en Stratégie & Développement d'Entreprise</p>
-                        <p class="hero-desc" data-i18n="hero.desc">Accompagnement des entreprises dans leur transformation et leur croissance.</p>
+                        <p class="hero-desc" data-i18n="hero.desc">Accompagnement des entreprises dans leur transformation et leur croissance. Une approche alliant expertise stratégique et vision pragmatique.</p>
                         <div class="hero-btns">
                             <a href="#" data-page="contact" class="btn btn-primary" data-i18n="hero.cta1">Me contacter</a>
                             <a href="#" data-page="services" class="btn btn-outline" data-i18n="hero.cta2">Découvrir mes services</a>
@@ -731,35 +645,45 @@
             </section>
         </div>
 
+        <!-- PAGE 2: BIOGRAPHIE -->
         <div id="biography-page" class="page">
             <section class="section">
                 <span class="section-label" data-i18n="bio.label">Biographie</span>
                 <h2 class="section-title" data-i18n="bio.title">Mon Parcours Professionnel</h2>
                 <div class="bio-grid">
-                    <div class="bio-card"><h3 data-i18n="bio.experienceTitle">Expérience</h3><p>---</p></div>
-                    <div class="bio-card"><h3 data-i18n="bio.educationTitle">Formation</h3><p>---</p></div>
-                    <div class="bio-card"><h3 data-i18n="bio.certificationsTitle">Certifications</h3><p>---</p></div>
-                </div>
-            </section>
-        </div>
-
-        <div id="services-page" class="page">
-            <section class="section" style="background: var(--gray-50); max-width: 100%;">
-                <div style="max-width: 1200px; margin: 0 auto;">
-                    <span class="section-label" data-i18n="services.label">Services</span>
-                    <h2 class="section-title" data-i18n="services.title">Ce Que Je Propose</h2>
-                    <div class="services-grid">
-                        <div class="service-card"><div class="service-icon"><i class="fa-solid fa-chart-line"></i></div><h3 data-i18n="services.s1title">Conseil Stratégique</h3><p>---</p></div>
-                        <div class="service-card"><div class="service-icon"><i class="fa-solid fa-coins"></i></div><h3 data-i18n="services.s2title">Consulting Financier</h3><p>---</p></div>
-                        <div class="service-card"><div class="service-icon"><i class="fa-solid fa-bullhorn"></i></div><h3 data-i18n="services.s3title">Stratégie Marketing</h3><p>---</p></div>
-                        <div class="service-card"><div class="service-icon"><i class="fa-solid fa-scale-balanced"></i></div><h3 data-i18n="services.s4title">Conseil Juridique</h3><p>---</p></div>
-                        <div class="service-card"><div class="service-icon"><i class="fa-solid fa-rocket"></i></div><h3 data-i18n="services.s5title">Transformation Digitale</h3><p>---</p></div>
-                        <div class="service-card"><div class="service-icon"><i class="fa-solid fa-people-group"></i></div><h3 data-i18n="services.s6title">Coaching & Leadership</h3><p>---</p></div>
+                    <div class="bio-card">
+                        <h3 data-i18n="bio.experienceTitle">Expérience</h3>
+                        <p>---</p>
+                    </div>
+                    <div class="bio-card">
+                        <h3 data-i18n="bio.educationTitle">Formation</h3>
+                        <p>---</p>
+                    </div>
+                    <div class="bio-card">
+                        <h3 data-i18n="bio.certificationsTitle">Certifications</h3>
+                        <p>---</p>
                     </div>
                 </div>
             </section>
         </div>
 
+        <!-- PAGE 3: SERVICES -->
+        <div id="services-page" class="page">
+            <section class="section" style="background: var(--gray-50);">
+                <span class="section-label" data-i18n="services.label">Services</span>
+                <h2 class="section-title" data-i18n="services.title">Ce Que Je Propose</h2>
+                <div class="services-grid">
+                    <div class="service-card"><div class="service-icon"><i class="fa-solid fa-chart-line"></i></div><h3 data-i18n="services.s1title">Conseil Stratégique</h3><p>---</p></div>
+                    <div class="service-card"><div class="service-icon"><i class="fa-solid fa-coins"></i></div><h3 data-i18n="services.s2title">Consulting Financier</h3><p>---</p></div>
+                    <div class="service-card"><div class="service-icon"><i class="fa-solid fa-bullhorn"></i></div><h3 data-i18n="services.s3title">Stratégie Marketing</h3><p>---</p></div>
+                    <div class="service-card"><div class="service-icon"><i class="fa-solid fa-scale-balanced"></i></div><h3 data-i18n="services.s4title">Conseil Juridique</h3><p>---</p></div>
+                    <div class="service-card"><div class="service-icon"><i class="fa-solid fa-rocket"></i></div><h3 data-i18n="services.s5title">Transformation Digitale</h3><p>---</p></div>
+                    <div class="service-card"><div class="service-icon"><i class="fa-solid fa-people-group"></i></div><h3 data-i18n="services.s6title">Coaching & Leadership</h3><p>---</p></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 4: POURQUOI MOI -->
         <div id="why-page" class="page">
             <section class="section">
                 <span class="section-label" data-i18n="why.label">Pourquoi Me Choisir</span>
@@ -771,20 +695,20 @@
             </section>
         </div>
 
+        <!-- PAGE 5: RESEAUX SOCIAUX -->
         <div id="social-page" class="page">
-            <section class="section text-center" style="background: var(--gray-50); max-width: 100%;">
-                <div style="max-width: 1200px; margin: 0 auto;">
-                    <span class="section-label" data-i18n="social.label">Réseaux Sociaux</span>
-                    <h2 class="section-title" data-i18n="social.title">Restons Connectés</h2>
-                    <div class="social-grid">
-                        <a href="#" class="social-link linkedin"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
-                        <a href="#" class="social-link facebook"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
-                        <a href="#" class="social-link instagram"><i class="fa-brands fa-instagram"></i> Instagram</a>
-                    </div>
+            <section class="section text-center">
+                <span class="section-label" data-i18n="social.label">Réseaux Sociaux</span>
+                <h2 class="section-title" data-i18n="social.title">Restons Connectés</h2>
+                <div class="social-grid">
+                    <a href="#" class="social-link linkedin"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+                    <a href="#" class="social-link facebook"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+                    <a href="#" class="social-link instagram"><i class="fa-brands fa-instagram"></i> Instagram</a>
                 </div>
             </section>
         </div>
 
+        <!-- PAGE 6: CONTACT -->
         <div id="contact-page" class="page">
             <section class="section">
                 <span class="section-label" data-i18n="contact.label">Contact</span>
@@ -797,7 +721,7 @@
                     </div>
                     <div class="contact-message">
                         <i class="fa-regular fa-paper-plane"></i>
-                        <p data-i18n="contact.messageInfo">Contactez-moi directement via WhatsApp ou email.</p>
+                        <p data-i18n="contact.messageInfo">Pour me contacter, veuillez utiliser les informations ci-contre ou me joindre directement sur WhatsApp.</p>
                     </div>
                 </div>
             </section>
@@ -813,7 +737,7 @@
                 <div class="footer-col"><h4 data-i18n="footer.linksTitle">Liens Rapides</h4><ul><li><a href="#" data-page="home">Accueil</a></li><li><a href="#" data-page="services">Services</a></li><li><a href="#" data-page="contact">Contact</a></li></ul></div>
                 <div class="footer-col"><h4 data-i18n="footer.contactTitle">Contact</h4><p class="phone-number" style="color:var(--gray-400);">+213</p></div>
             </div>
-            <div class="footer-bottom"><span data-i18n="footer.copyright">© 2026 Consultant.</span></div>
+            <div class="footer-bottom"><span data-i18n="footer.copyright">© 2026 Consultant. Tous droits réservés.</span></div>
         </div>
     </footer>
 
@@ -823,7 +747,7 @@
                 'logo': 'Consultant',
                 'nav.home': 'Accueil', 'nav.biography': 'Biographie', 'nav.services': 'Services',
                 'nav.why': 'Pourquoi moi', 'nav.social': 'Réseaux', 'nav.contact': 'Contact',
-                'hero.name': 'Nom du Consultant', 'hero.title': 'Consultant en Stratégie & Développement',
+                'hero.name': 'Nom du Consultant', 'hero.title': 'Consultant en Stratégie & Développement d\'Entreprise',
                 'hero.desc': 'Accompagnement des entreprises dans leur transformation et leur croissance.',
                 'hero.cta1': 'Me contacter', 'hero.cta2': 'Découvrir mes services',
                 'bio.label': 'Biographie', 'bio.title': 'Mon Parcours Professionnel',
@@ -838,15 +762,15 @@
                 'social.label': 'Réseaux Sociaux', 'social.title': 'Restons Connectés',
                 'contact.label': 'Contact', 'contact.title': 'Parlons De Votre Projet',
                 'contact.emailTitle': 'Email', 'contact.phoneTitle': 'Téléphone', 'contact.addressTitle': 'Adresse',
-                'contact.messageInfo': 'Contactez-moi directement via WhatsApp ou email.',
+                'contact.messageInfo': 'Pour me contacter, veuillez utiliser les informations ci-contre ou me joindre directement sur WhatsApp.',
                 'footer.aboutTitle': 'À Propos', 'footer.linksTitle': 'Liens Rapides', 'footer.contactTitle': 'Contact',
-                'footer.copyright': '© 2026 Consultant.'
+                'footer.copyright': '© 2026 Consultant. Tous droits réservés.'
             },
             ar: {
                 'logo': 'المستشار',
                 'nav.home': 'الرئيسية', 'nav.biography': 'السيرة الذاتية', 'nav.services': 'الخدمات',
                 'nav.why': 'لماذا تختارني', 'nav.social': 'التواصل الاجتماعي', 'nav.contact': 'اتصل بي',
-                'hero.name': 'اسم المستشار', 'hero.title': 'مستشار في الاستراتيجية والتطوير',
+                'hero.name': 'اسم المستشار', 'hero.title': 'مستشار في الاستراتيجية وتطوير الأعمال',
                 'hero.desc': 'مرافقة الشركات في تحولها ونموها.',
                 'hero.cta1': 'اتصل بي', 'hero.cta2': 'اكتشف خدماتي',
                 'bio.label': 'السيرة الذاتية', 'bio.title': 'مسيرتي المهنية',
@@ -860,17 +784,19 @@
                 'social.label': 'وسائل التواصل الاجتماعي', 'social.title': 'لنبق على تواصل',
                 'contact.label': 'اتصل بي', 'contact.title': 'لنتحدث عن مشروعكم',
                 'contact.emailTitle': 'البريد الإلكتروني', 'contact.phoneTitle': 'الهاتف', 'contact.addressTitle': 'العنوان',
-                'contact.messageInfo': 'تواصل معي مباشرة عبر واتساب أو البريد الإلكتروني.',
+                'contact.messageInfo': 'للاتصال بي، يرجى استخدام المعلومات المجاورة أو التواصل معي مباشرة عبر واتساب.',
                 'footer.aboutTitle': 'عن المستشار', 'footer.linksTitle': 'روابط سريعة', 'footer.contactTitle': 'اتصل بنا',
-                'footer.copyright': '© 2026 المستشار.'
+                'footer.copyright': '© 2026 المستشار. جميع الحقوق محفوظة.'
             }
         };
 
         let currentLang = 'fr';
+        let currentPage = 'home';
 
         function switchLanguage(lang) {
             currentLang = lang;
             document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', lang);
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
             });
@@ -884,11 +810,16 @@
         function navigateTo(pageId) {
             document.querySelectorAll('.page').forEach(page => page.classList.remove('active-page'));
             document.getElementById(`${pageId}-page`).classList.add('active-page');
-            document.querySelectorAll('.nav-links a, .mobile-nav-links a, .footer-col a[data-page], .logo').forEach(link => {
+            document.querySelectorAll('.nav-links a, .footer-col a[data-page], .logo').forEach(link => {
                 if (link.getAttribute('data-page') === pageId) link.classList.add('active');
                 else link.classList.remove('active');
             });
+            currentPage = pageId;
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (document.getElementById('navLinks').classList.contains('active')) {
+                document.getElementById('navLinks').classList.remove('active');
+                document.getElementById('mobileToggle').innerHTML = '<i class="fa-solid fa-bars"></i>';
+            }
             localStorage.setItem('currentPage', pageId);
         }
 
@@ -910,10 +841,10 @@
         const savedPage = localStorage.getItem('currentPage');
         if (savedPage && document.getElementById(`${savedPage}-page`)) navigateTo(savedPage);
 
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) header.classList.add('scrolled');
-            else header.classList.remove('scrolled');
+        document.getElementById('mobileToggle').addEventListener('click', () => {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+            document.getElementById('mobileToggle').innerHTML = nav.classList.contains('active') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
         });
     </script>
 </body>
